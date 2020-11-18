@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from "react-router-dom"
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Alert } from '@material-ui/lab'; 
+import { loginUser } from '../redux/actions/uiActions'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 export const SignIn = () => {
   const classes = useStyles();
   const history = useHistory()
+  const dispatch = useDispatch()
   const msg = useSelector(state=>state.ui.message,()=>{})
   const errors = useSelector(state=>state.ui.errors,()=>{})
   const [form, setForm] = useState({email: '', password: ''})
@@ -47,11 +49,8 @@ export const SignIn = () => {
     if(form[event.target.name] !== '') errors[event.target.name] = null
   }
 
-  const loginHandler = async () => {
-    // try {
-    //   const data = await request('/api/login', 'POST', {...form})
-    //   await history.push('/details')
-    // } catch (error) {}
+  const loginHandler = () => {
+    dispatch(loginUser({...form}, history))
   }
 
   return (

@@ -1,12 +1,13 @@
 const express = require('express')
 const connectDB = require('./config/db')
 const cors = require('cors')
+const bodyParser = require('body-parser')
 const config = require('config')
 const app = express()
 // Cors Middleware
 app.use(cors())
 
-app.use(express.json())
+app.use(bodyParser.json())
 // config
 const port = config.get('port')
 // DB Start

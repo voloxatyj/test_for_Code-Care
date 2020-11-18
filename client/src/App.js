@@ -1,11 +1,13 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-// import jwtDecode from 'jwt-decode'
-import { SET_AUTH, SET_USER } from './redux/types'
+import jwtDecode from 'jwt-decode'
 
 // Redux Init
+import { SET_AUTH, SET_USER } from './redux/types'
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
+// Components
+import { Navbar } from './layouts/Navbar'
 import { SignIn } from './components/SignIn'
 import { SignUp } from './components/SignUp'
 
@@ -27,6 +29,7 @@ export const App = () => {
     <Router>
       <Provider store={store}>
         <div className="container">
+          <Navbar />
           <Switch>
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />

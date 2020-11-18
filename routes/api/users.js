@@ -13,12 +13,13 @@ const jwtSecret = config.get('jwtSecret')
 router.post(
 	'/register',
 	[
-		check('email', 'wrong email').isEmail(),
-		check('password', 'Minimal length is 8 characters').isLength({min:8}),
-		check('name', 'Minimal length is 4 characters').notEmpty().isLength({min:4}),
+	check('email', 'Wrong Email').isEmail(),
+	check('password', 'Minimal length is 8 characters').isLength({min:8}),
+	check('name', 'Minimal length is 4 characters').notEmpty().isLength({min:4}),
 	], 
 	async (req, res) => {
-	try {
+		try {
+		const { name , email, password } = req.body
 		const errors = validationResult(req)
 		if(!errors.isEmpty()) {
 			return res.status(400).json({
@@ -26,7 +27,6 @@ router.post(
 				message: 'Incorrect credentials'
 			})
 		}
-		const { name , email, password } = req.body
 		const candidate = await User.findOne({ email })
 		if(candidate) return res.status(400).json({ errors: [{param: 'email', msg: 'Such email is already used'}],message: 'Such email is already used'})
 		const hashedPassword = await bcrypt.hash(password, 12)
@@ -51,7 +51,7 @@ router.post(
 	'/login', 
 	[
 		check('email', 'Wrong email').normalizeEmail().isEmail(),
-		check('password', 'Password is incorrect or not exists').exists()
+		check('password', 'Password is incorrect or not exists').isLength({min:8}).exists()
 	],
 	async (req, res) => {
 	try {

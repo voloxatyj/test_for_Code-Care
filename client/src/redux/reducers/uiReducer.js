@@ -1,4 +1,4 @@
-import { SET_AUTH, SET_ERRORS, CLEAR_ERRORS } from "../types"
+import { SET_AUTH, SET_ERRORS, CLEAR_ERRORS, SET_UNAUTHENTICATED } from "../types"
 
 const initialState = {
 	auth : false,
@@ -6,7 +6,8 @@ const initialState = {
 		email: null,
 		password: null,
 		name: null, 
-	}
+	},
+	message: null
 }
 
 export default function(state=initialState, action) {
@@ -16,10 +17,16 @@ export default function(state=initialState, action) {
 				...state,
 				auth: true
 			}
+		case SET_UNAUTHENTICATED:
+			return {
+				...state,
+				auth: false
+			}
 		case SET_ERRORS:
 			action.payload.errors.forEach(item=>state.errors[item.param]=item.msg)
 			return {
-				...state
+				...state,
+				message: action.payload.message
 			}
 		case CLEAR_ERRORS:
 			return {
@@ -29,6 +36,7 @@ export default function(state=initialState, action) {
 					password: null,
 					name: null,
 				},
+				message: null
 			}
 		default: 
 			return state

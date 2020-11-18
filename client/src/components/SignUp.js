@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from "react-router-dom"
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Alert } from '@material-ui/lab'; 
+import { signupUser } from '../redux/actions/uiActions'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,21 +39,18 @@ const useStyles = makeStyles((theme) => ({
 export const SignUp = () => {
   const classes = useStyles()
   const history = useHistory()
+  const dispatch = useDispatch()
   const msg = useSelector(state=>state.ui.message,()=>{})
   const errors = useSelector(state=>state.ui.errors,()=>{})
-  const [form, setForm] = useState({email: '', password: '', firstName: '', lastName: ''})
+  const [form, setForm] = useState({email: '', password: '', name: ''})
 
   const changeHandler = event => {
     setForm({...form, [event.target.name]: event.target.value })
     if(form[event.target.name] !== '') errors[event.target.name] = null
   }
-
-
-  const registerHandler = async () => {
-    // try {
-    //   const data = await request('/api/register', 'POST', {...form})
-    //   await history.push('/details')
-    // } catch (error) {}
+  
+  const registerHandler = () => {
+    dispatch(signupUser({...form}, history))  
   }
 
   return (
@@ -71,28 +69,16 @@ export const SignUp = () => {
         </Alert>) : null}
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
-                autoComplete="fname"
-                name="firstName"
+                autoComplete="name"
+                name="name"
                 variant="outlined"
                 required
                 fullWidth
-                label={errors.firstName?errors.firstName:"First Name"}
-                error={errors.firstName?true:false}
+                label={errors.name?errors.name:"Name"}
+                error={errors.name?true:false}
                 autoFocus
-                onChange={changeHandler}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                label={errors.lastName?errors.lastName:"First Name"}
-                error={errors.lastName?true:false}
-                name="lastName"
-                autoComplete="lname"
                 onChange={changeHandler}
               />
             </Grid>
@@ -119,12 +105,6 @@ export const SignUp = () => {
                 type="password"
                 autoComplete="current-password"
                 onChange={changeHandler}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>
           </Grid>
