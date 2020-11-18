@@ -1,19 +1,19 @@
 const express = require('express')
 const connectDB = require('./config/db')
 const cors = require('cors')
-const bodyParser = require('body-parser')
+const config = require('config')
 const app = express()
 // Cors Middleware
 app.use(cors())
-// Bodyparser Middleware
-app.use(bodyParser.json())
+
+app.use(express.json())
 // config
-const port = require('./config/keys').port
-const events = require('./routes/api/events')
+const port = config.get('port')
 // DB Start
 connectDB()
-
-app.use('/api/events', events)
+// Use Routes
+app.use('/api/events', require('./routes/api/events'))
+app.use('/api/users', require('./routes/api/users'))
 
 const PORT = process.env.PORT || port
 
