@@ -1,0 +1,26 @@
+{
+  "name": "mern_calendar",
+  "version": "1.0.0",
+  "description": "calendar",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js"
+  },
+  "keywords": [
+    "mern",
+    "react"
+  ],
+  "author": "Ostap Medynskyy",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.15"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
