@@ -1,17 +1,18 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import useCalendar from '../../hooks/useCalendar'
+import { ViewDay } from './ViewDay'
 
 export const Calendar = () => {
-
+	const [selectedView, setSelectedView] = useState({visibility:false,date:null})
 	const { calendarRows, selectedDate, todayFormatted, daysShort, monthNames, getNextMonth, getPrevMonth } = useCalendar()
 
 	const dateClickHandler = date => {
-		console.log(date)
+		setSelectedView({visibility:true,date:date})
 	}
 
 	return (
 		<Fragment>
-
+			{selectedView.visibility ? <ViewDay date={selectedView.date} /> :
 			<div className="container">
 				<section className="hero is-primary">
 					<div className="hero-body">
@@ -50,7 +51,7 @@ export const Calendar = () => {
 					<button className="button" onClick={getPrevMonth}>Prev</button>
 					<button className="button" onClick={getNextMonth}>Next</button>
 				</div>
-			</div>
+			</div>}
 		</Fragment>
 	)
 }

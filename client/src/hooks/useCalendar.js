@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Calendar } from 'react-big-calendar'
 
 const daysShortArr = [
 	'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'

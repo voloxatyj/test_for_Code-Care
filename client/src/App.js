@@ -10,10 +10,9 @@ import { Navbar } from './components/layouts/Navbar'
 import { SignIn } from './components/pages/SignIn'
 import { SignUp } from './components/pages/SignUp'
 import { Calendar } from './components/pages/Calendar'
-import { ViewDay } from './components/pages/ViewDay'
 
 const token = localStorage.getItem('token') || undefined
-const user = JSON.parse(localStorage.getItem('userData'))
+const user = JSON.parse(localStorage.getItem('user'))
 
 if(token){
   const decodedToken = jwtDecode(token)
@@ -32,7 +31,6 @@ export const App = () => {
         <div className="container-body">
           <Navbar />
           <Switch>
-            <Route exact path='/day' component={ViewDay} />
             <Route exact path='/calendar' component={Calendar} />
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />

@@ -1,15 +1,21 @@
-import { SET_USER } from "../types"
+import { SET_USER, ADD_EVENT } from "../types"
 
 const initialState = {
-	user: null
+	user: null,
+	events: []
 }
 
 export default function(state=initialState, action) {
-	switch (action.payload) {
+	switch (action.type) {
 		case SET_USER:
 			return {
 				...state,
 				user: action.payload
+ 		}
+		case ADD_EVENT:
+			state.events.push(action.payload)
+			return {
+				...state,
 			}
 		default:
 			return state

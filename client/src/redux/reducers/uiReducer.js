@@ -1,7 +1,8 @@
-import { SET_AUTH, SET_ERRORS, CLEAR_ERRORS, SET_UNAUTHENTICATED } from "../types"
+import { SET_AUTH, SET_ERRORS, CLEAR_ERRORS, SET_UNAUTHENTICATED, OPEN_DIALOG, CLOSE_DIALOG } from "../types"
 
 const initialState = {
 	auth : false,
+	openDialog: false,
 	errors: {
 		email: null,
 		password: null,
@@ -27,6 +28,16 @@ export default function(state=initialState, action) {
 			return {
 				...state,
 				message: action.payload.message
+			}
+		case OPEN_DIALOG:
+			return {
+				...state,
+				openDialog: true
+			}
+		case CLOSE_DIALOG:
+			return {
+				...state,
+				openDialog: false
 			}
 		case CLEAR_ERRORS:
 			return {

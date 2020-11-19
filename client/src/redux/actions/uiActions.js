@@ -15,6 +15,7 @@ export const signupUser = (data, history) => dispatch => {
 	axios.post('/api/users/register', body, config)
 		.then(res => {
 			setAuthorizationHeader(res.data.token)
+			localStorage.setItem('user', JSON.stringify(res.data.user))
 			dispatch({
 				type: SET_USER,
 				payload: res.data.user
@@ -45,6 +46,7 @@ export const loginUser = (data, history) => dispatch => {
 	
 	axios.post('/api/users/login', body, config)
 		.then(res => {
+    	localStorage.setItem('user', JSON.stringify(res.data.user))
 			setAuthorizationHeader(res.data.token)
 			dispatch({
 				type: SET_USER,
@@ -69,8 +71,9 @@ export const setAuthorizationHeader = token => {
 	axios.defaults.headers.common['x-auth-token'] = Token
 }
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = history => dispatch => {
 	localStorage.removeItem('token')
 	delete axios.defaults.headers.common['x-auth-token']
 	dispatch({ type: SET_UNAUTHENTICATED })
+	history.push('/signin')
 }

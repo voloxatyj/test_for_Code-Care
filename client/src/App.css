@@ -106,3 +106,11 @@ table th:not([align]) {
     max-width: 960px;
   }
 }
+
+/* Event Dialog */
+.form-container {
+  display: grid;
+  justify-content: center;
+  grid-template-rows: repeat(3, 200px);
+  min-width: 100px;
+}

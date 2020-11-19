@@ -4,11 +4,11 @@ const Schema = mongoose.Schema
 // Create Schema
 const EventSchema = new Schema({
 	start:{
-		type: Number,
+		type: String,
 		required: true
 	},
 	duration:{
-		type: Number,
+		type: String,
 		required: true
 	},
 	title:{
@@ -16,11 +16,11 @@ const EventSchema = new Schema({
 		required: true
 	},
 	date:{
-		type: Date,
+		type: String,
 		required: true
 	},
-	userID:{
-		type: Number,
+	id:{
+		type: String,
 		required: true
 	}
 })

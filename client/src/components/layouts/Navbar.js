@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,7 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';;
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { logoutUser } from '../../redux/actions/uiActions'
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
 export const Navbar = () => {
   const classes = useStyles();
   const auth = useSelector(state=>state.ui.auth)
+  const dispatch = useDispatch()
+  const history = useHistory()
 
   return (
     <div className={classes.root}>
@@ -55,7 +59,7 @@ export const Navbar = () => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
 								color="inherit"
-								
+								onClick={()=>dispatch(logoutUser(history))}
               >
                 <ExitToAppIcon fontSize="large" />
               </IconButton>

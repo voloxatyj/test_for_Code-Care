@@ -3,3 +3,7 @@ export const SET_AUTH = "SET_AUTH";
 export const SET_ERRORS = "SET_ERRORS"; 
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const SET_UNAUTHENTICATED = "SET_UNAUTHENTICATED";
+export const OPEN_DIALOG = "OPEN_DIALOG";
+export const CLOSE_DIALOG = "CLOSE_DIALOG";
+export const ADD_EVENT = "ADD_EVENT";
+export const SET_ERROR_DIALOG = "SET_ERROR_DIALOG"; 
