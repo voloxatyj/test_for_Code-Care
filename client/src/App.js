@@ -1,15 +1,16 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
-
 // Redux Init
 import { SET_AUTH, SET_USER } from './redux/types'
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
 // Components
-import { Navbar } from './layouts/Navbar'
-import { SignIn } from './components/SignIn'
-import { SignUp } from './components/SignUp'
+import { Navbar } from './components/layouts/Navbar'
+import { SignIn } from './components/pages/SignIn'
+import { SignUp } from './components/pages/SignUp'
+import { Calendar } from './components/pages/Calendar'
+import { ViewDay } from './components/pages/ViewDay'
 
 const token = localStorage.getItem('token') || undefined
 const user = JSON.parse(localStorage.getItem('userData'))
@@ -28,9 +29,11 @@ export const App = () => {
   return (
     <Router>
       <Provider store={store}>
-        <div className="container">
+        <div className="container-body">
           <Navbar />
           <Switch>
+            <Route exact path='/day' component={ViewDay} />
+            <Route exact path='/calendar' component={Calendar} />
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />
           </Switch>

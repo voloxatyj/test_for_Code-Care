@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from "react-router-dom"
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Alert } from '@material-ui/lab'; 
-import { loginUser } from '../redux/actions/uiActions'
+import { signupUser } from '../../redux/actions/uiActions'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,28 +29,28 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
 }));
 
-export const SignIn = () => {
-  const classes = useStyles();
+export const SignUp = () => {
+  const classes = useStyles()
   const history = useHistory()
   const dispatch = useDispatch()
   const msg = useSelector(state=>state.ui.message,()=>{})
   const errors = useSelector(state=>state.ui.errors,()=>{})
-  const [form, setForm] = useState({email: '', password: ''})
+  const [form, setForm] = useState({email: '', password: '', name: ''})
 
   const changeHandler = event => {
     setForm({...form, [event.target.name]: event.target.value })
     if(form[event.target.name] !== '') errors[event.target.name] = null
   }
-
-  const loginHandler = () => {
-    dispatch(loginUser({...form}, history))
+  
+  const registerHandler = () => {
+    dispatch(signupUser({...form}, history))  
   }
 
   return (
@@ -61,60 +61,67 @@ export const SignIn = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign up
         </Typography>
         {msg ? 
         (<Alert variant="outlined" severity="warning" style={{marginTop: "2rem"}}>
           {msg}
         </Alert>) : null}
         <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            label={errors.email?errors.email:"Email Address"}
-            error={errors.email?true:false}
-            name="email"
-            autoComplete="email"
-            autoFocus
-            onChange={changeHandler}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label={errors.password?errors.password:"Password"}
-            error={errors.password?true:false}
-            type="password"
-            autoComplete="current-password"
-            onChange={changeHandler}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="name"
+                name="name"
+                variant="outlined"
+                required
+                fullWidth
+                label={errors.name?errors.name:"Name"}
+                error={errors.name?true:false}
+                autoFocus
+                onChange={changeHandler}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                label={errors.email?errors.email:"Email Address"}
+                error={errors.email?true:false}
+                name="email"
+                autoComplete="email"
+                onChange={changeHandler}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label={errors.password?errors.password:"Password"}
+                error={errors.password?true:false}
+                type="password"
+                autoComplete="current-password"
+                onChange={changeHandler}
+              />
+            </Grid>
+          </Grid>
           <Button
             type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={loginHandler}
+            onClick={registerHandler}
           >
-            Sign In
+            Sign Up
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
+          <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link href="/signin" variant="body2">
+                Already have an account? Sign in
               </Link>
             </Grid>
           </Grid>

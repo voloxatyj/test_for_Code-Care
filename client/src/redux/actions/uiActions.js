@@ -21,7 +21,7 @@ export const signupUser = (data, history) => dispatch => {
 			})
 			dispatch({type: SET_AUTH})
 			dispatch({type: CLEAR_ERRORS})
-			history.push('/')
+			history.push('/calendar')
 		})
 		.catch(err => {
       dispatch({
@@ -52,7 +52,7 @@ export const loginUser = (data, history) => dispatch => {
 			})
 			dispatch({type: SET_AUTH})
 			dispatch({type: CLEAR_ERRORS})
-			history.push('/')
+			history.push('/calendar')
 		})
 		.catch(err => {
       dispatch({
