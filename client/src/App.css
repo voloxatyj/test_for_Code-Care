@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -113,4 +114,59 @@ table th:not([align]) {
   justify-content: center;
   grid-template-rows: repeat(3, 200px);
   min-width: 100px;
+}
+
+/* ViewDay */
+.time-container {
+  display: flex;
+  width: 80%;
+  padding: 1rem;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
+.time-second,
+.time-first {
+  text-align: left;
+  display: flex;
+  position: relative;
+}
+.time-container h3 {
+  font-size: 16px;
+  height: 50px;
+  background-color: #a9a9a908;
+  border-top: 1px solid #a9a9a92e;
+  width: 80%;
+}
+.time-container h5 {
+  font-size: 12px;
+  height: 50px;
+}
+.container-event {
+  position: absolute;
+  background-color: #e2ecf5;
+  padding: 1rem;
+  border-left: 1px solid #6e9ecf;
+}
+.event {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.title-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem;
+}
+.fas.fa-trash-alt.fa-lg {
+  cursor: pointer;
+  color: red;
+  position: relative;
+  left: 30%;
+  z-index: 1;
 }

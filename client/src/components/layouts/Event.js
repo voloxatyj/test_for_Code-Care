@@ -16,6 +16,8 @@ import { addEvent } from '../../redux/actions/dataActions'
 import useCalendar from '../../hooks/useCalendar'
 import { useHistory } from 'react-router-dom';
 import moment from 'moment'
+import { Alert } from '@material-ui/lab'; 
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
@@ -32,9 +34,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export const Event = () => {
 	const classes = useStyles();
-	const { selectedDate } = useCalendar()
+	const selectedDate = useSelector(state => state.data.date,()=>{})
 	const date = moment(selectedDate).format('YYYY-MM-DD')
 	const history = useHistory()
+	const event = useSelector(state=>state.ui.errors.event,()=>{})
 	const openDialog = useSelector(state => state.ui.openDialog,()=>{})
 	const id = useSelector(state => state.data.user.id,()=>{})
 	const dispatch = useDispatch()
@@ -42,7 +45,6 @@ export const Event = () => {
 
   const changeHandler = event => {
     setForm({...form, [event.target.name]: event.target.value })
-    // if(form[event.target.name] !== '') errors[event.target.name] = null
 	}
 
 	const sendFormData = () => {
@@ -70,7 +72,12 @@ export const Event = () => {
             </Button>
           </Toolbar>
         </AppBar>
-					<form className={classes.form} noValidate style={{marginTop: '5rem'}}>
+					<h1 style={{textAlign: "center"}}>{selectedDate}</h1>
+					{event ? 
+						(<Alert variant="outlined" severity="warning" style={{margin: "2rem auto", width: "200px"}}>
+							{event}
+						</Alert>) : null}
+					<form className={classes.form} noValidate style={{marginTop: '3rem'}}>
 						<Grid container spacing={4} direction="column" justify="center" alignItems="center">
 							<Grid item xs={12}>
 								<TextField
@@ -79,9 +86,7 @@ export const Event = () => {
 									required
 									fullWidth
 									type="text"
-									placeholder="Title"
-									// label={errors.name?errors.name:"Name"}
-									// error={errors.name?true:false}
+									label="Title"
 									autoFocus
 									onChange={changeHandler}
 								/>
@@ -93,9 +98,8 @@ export const Event = () => {
 									required
 									fullWidth
 									type="text"
-									placeholder="type like this 08:00"
-									// label={errors.name?errors.name:"Name"}
-									// error={errors.name?true:false}
+									label={event?event:"type like this 08:00-17:00"}
+									error={event?true:false}
 									autoFocus
 									onChange={changeHandler}
 								/>
@@ -107,9 +111,8 @@ export const Event = () => {
 									required
 									fullWidth
 									type="number"
-									placeholder="how much min you need"
-									// label={errors.name?errors.name:"Name"}
-									// error={errors.name?true:false}
+									label={event?event:"how much min you need"}
+									error={event?true:false}
 									autoFocus
 									onChange={changeHandler}
 								/>

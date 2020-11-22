@@ -1,18 +1,25 @@
 import React, { Fragment, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import useCalendar from '../../hooks/useCalendar'
-import { ViewDay } from './ViewDay'
+import { OPEN_VIEW } from '../../redux/types'
+import { ViewDay } from '../layouts/ViewDay'
+import { selectDate } from '../../redux/actions/dataActions'
 
 export const Calendar = () => {
-	const [selectedView, setSelectedView] = useState({visibility:false,date:null})
+	const [date, setDate] = useState(null)
+	const viewDay = useSelector(state => state.ui.openView,()=>{})
 	const { calendarRows, selectedDate, todayFormatted, daysShort, monthNames, getNextMonth, getPrevMonth } = useCalendar()
+	const dispatch = useDispatch()
 
 	const dateClickHandler = date => {
-		setSelectedView({visibility:true,date:date})
+		setDate(date)
+		dispatch({type: OPEN_VIEW})
+		dispatch(selectDate(date))
 	}
 
 	return (
 		<Fragment>
-			{selectedView.visibility ? <ViewDay date={selectedView.date} /> :
+			{viewDay ? <ViewDay date={date} /> :
 			<div className="container">
 				<section className="hero is-primary">
 					<div className="hero-body">

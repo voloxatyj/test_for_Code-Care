@@ -10,6 +10,8 @@ import { Navbar } from './components/layouts/Navbar'
 import { SignIn } from './components/pages/SignIn'
 import { SignUp } from './components/pages/SignUp'
 import { Calendar } from './components/pages/Calendar'
+import { getEvents } from './redux/actions/dataActions'
+import axios from 'axios'
 
 const token = localStorage.getItem('token') || undefined
 const user = JSON.parse(localStorage.getItem('user'))
@@ -20,8 +22,11 @@ if(token){
     localStorage.removeItem('token')
     window.location.href='/signin'
   }
+  axios.defaults.headers['Authorization'] = token
   store.dispatch({ type: SET_AUTH })
   store.dispatch({type: SET_USER,payload: user})
+  const id = store.getState().data.user.id
+  store.dispatch(getEvents(id))
 }
 
 export const App = () => {

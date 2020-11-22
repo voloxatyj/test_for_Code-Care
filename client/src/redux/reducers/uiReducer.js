@@ -1,8 +1,10 @@
-import { SET_AUTH, SET_ERRORS, CLEAR_ERRORS, SET_UNAUTHENTICATED, OPEN_DIALOG, CLOSE_DIALOG } from "../types"
+import { SET_AUTH, SET_ERRORS, CLEAR_ERRORS, SET_UNAUTHENTICATED, OPEN_DIALOG, CLOSE_DIALOG, OPEN_VIEW, CLOSE_VIEW } from "../types"
 
 const initialState = {
 	auth : false,
+	openView: false,
 	openDialog: false,
+	viewEvent: true,
 	errors: {
 		email: null,
 		password: null,
@@ -38,6 +40,16 @@ export default function(state=initialState, action) {
 			return {
 				...state,
 				openDialog: false
+			}
+		case OPEN_VIEW:
+			return {
+				...state,
+				openView: true
+			}
+		case CLOSE_VIEW:
+			return {
+				...state,
+				openView: false
 			}
 		case CLEAR_ERRORS:
 			return {
