@@ -13,7 +13,6 @@ import Grid from '@material-ui/core/Grid';
 import { useDispatch, useSelector } from 'react-redux';
 import { CLOSE_DIALOG } from '../../redux/types'
 import { addEvent } from '../../redux/actions/dataActions'
-import useCalendar from '../../hooks/useCalendar'
 import { useHistory } from 'react-router-dom';
 import moment from 'moment'
 import { Alert } from '@material-ui/lab'; 
