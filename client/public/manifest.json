@@ -21,6 +21,5 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "content_security_policy": "default-src 'self' https://warm-refuge-29032.herokuapp.com/"
+  "background_color": "#ffffff"
 }
