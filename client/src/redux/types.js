@@ -1,0 +1,13 @@
+export const SET_USER = "SET_USER";
+export const SET_AUTH = "SET_AUTH"; 
+export const SET_ERRORS = "SET_ERRORS"; 
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const SET_UNAUTHENTICATED = "SET_UNAUTHENTICATED";
+export const OPEN_DIALOG = "OPEN_DIALOG";
+export const CLOSE_DIALOG = "CLOSE_DIALOG";
+export const ADD_EVENT = "ADD_EVENT";
+export const OPEN_VIEW = "OPEN_VIEW";
+export const CLOSE_VIEW = "CLOSE_VIEW";
+export const SET_DATE = "SET_DATE";
+export const GET_EVENTS = "GET_EVENTS";
+export const DELETE_EVENT = "DELETE_EVENT";
