@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "calendar",
   "main": "app.js",
+  "homepage": ".",
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "node app.js",
@@ -24,8 +25,6 @@
     "concurrently": "^5.3.0",
     "config": "^3.3.2",
     "cors": "^2.8.5",
-    "devextreme": "20.2.3",
-    "devextreme-react": "20.2.3",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
     "jsonwebtoken": "^8.5.1",
