@@ -3,12 +3,15 @@ const router = express.Router()
 const { check, validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const config = require('config')
+const dotenv = require('dotenv')
+
+// Load config
+dotenv.config({ path: '../../config/config.env' })
 
 // Event Model
 const User = require('../../models/User')
 // JWT Secret
-const jwtSecret = config.get('jwtSecret')
+const jwtSecret = process.env.jwtSecret
 // Register User
 router.post(
 	'/register',

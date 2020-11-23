@@ -6,8 +6,8 @@
   "homepage": ".",
   "scripts": {
     "client-install": "npm install --prefix client",
-    "start": "node app.js",
-    "server": "nodemon app.js",
+    "start": "cross-env NODE_ENV=production node app.js",
+    "server": "cross-env NODE_ENV=development nodemon app.js",
     "client": "npm start --prefix client",
     "dev": "sudo sysctl -w fs.inotify.max_user_watches=100000 && concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
@@ -26,8 +26,9 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^5.3.0",
-    "config": "^3.3.2",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
     "jsonwebtoken": "^8.5.1",

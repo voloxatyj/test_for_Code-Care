@@ -2,18 +2,20 @@ const express = require('express')
 const connectDB = require('./config/db')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const config = require('config')
 const app = express()
+const dotenv = require('dotenv')
+
+// Load config
+dotenv.config({ path: './config/config.env' })
 
 // Enable cors
 const corsOptions = {
-  origin: config.get('frontendURL'),
+  origin: process.env.frontendURL,
   credentials: true,
 };
 app.use(cors(corsOptions))
-
+app.use(express.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
 // DB Start
 connectDB()
 // Use Routes
@@ -30,7 +32,6 @@ if (process.env.NODE_ENV === 'production') {
 	})
 }
 
-const port = config.get('port')
-const PORT = port || 5000
+const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
