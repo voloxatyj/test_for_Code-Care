@@ -5,7 +5,12 @@ const bodyParser = require('body-parser')
 const config = require('config')
 const app = express()
 
-app.use(cors())
+// Enable cors
+const corsOptions = {
+  origin: config.get('frontendURL'),
+  credentials: true,
+};
+app.use(cors(corsOptions))
 
 app.use(bodyParser.json())
 

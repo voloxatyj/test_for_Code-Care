@@ -1,5 +1,6 @@
 {
 	"port": 5000,
 	"mongoURI": "mongodb+srv://admin:root@cluster0.huu8s.mongodb.net/calendar?retryWrites=true&w=majority",
-	"jwtSecret": "voloxatyj_dbJwtSecret"
+	"jwtSecret": "voloxatyj_dbJwtSecret",
+	"frontendURL": "https://safe-beyond-29690.herokuapp.com/"
 }
