@@ -9,7 +9,6 @@ export const ViewEvent = ({text, heigh, id, right}) => {
 			<h4 className="event" style={{minHeight: `${heigh*50}px`}}>{text}</h4>
 			<i className="fas fa-trash-alt fa-lg"
 				onClick={()=>{
-					console.log('asdasd')
 					dispatch(deleteEvent(id))}}
 			></i> 
 		</div>
