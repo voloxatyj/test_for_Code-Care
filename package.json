@@ -17,7 +17,7 @@
     "react"
   ],
   "engines": {
-    "node": "10.16.0"
+    "node": "14.14.0"
   },
   "author": "Ostap Medynskyy",
   "license": "MIT",
