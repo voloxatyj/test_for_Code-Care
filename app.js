@@ -8,12 +8,7 @@ const dotenv = require('dotenv')
 // Load config
 dotenv.config({ path: './config/config.env' })
 
-// Enable cors
-const corsOptions = {
-  origin: process.env.frontendURL,
-  credentials: true,
-};
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 // DB Start
