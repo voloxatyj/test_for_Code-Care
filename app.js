@@ -4,8 +4,13 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const config = require('config')
 const app = express()
-// Cors Middleware
-app.use(cors())
+
+// Enable cors
+const corsOptions = {
+  origin: config.get('frontendURL'),
+  credentials: true,
+};
+app.use(cors(corsOptions))
 
 app.use(bodyParser.json())
 // config
@@ -24,6 +29,6 @@ if (process.env.NODE_ENV === 'production') {
 	})
 }
 
-const PORT = process.env.PORT || port
+const PORT = config.get('port') || port
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))
