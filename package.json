@@ -16,6 +16,9 @@
     "mern",
     "react"
   ],
+  "engines": {
+    "node": "10.16.0"
+  },
   "author": "Ostap Medynskyy",
   "license": "MIT",
   "dependencies": {

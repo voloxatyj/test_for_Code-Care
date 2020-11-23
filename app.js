@@ -5,20 +5,17 @@ const bodyParser = require('body-parser')
 const config = require('config')
 const app = express()
 
-// Enable cors
-const corsOptions = {
-  origin: config.get('frontendURL'),
-  credentials: true,
-};
-app.use(cors(corsOptions))
+app.use(cors())
 
 app.use(bodyParser.json())
 
 // DB Start
 connectDB()
 // Use Routes
-app.use('/api/events', require('./routes/api/events'))
-app.use('/api/users', require('./routes/api/users'))
+const events = require('./routes/api/events')
+app.use('/api/events', events)
+const users = require('./routes/api/users')
+app.use('/api/users', users)
 // Production
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'))
