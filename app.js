@@ -7,10 +7,10 @@ const app = express()
 
 // Enable cors
 const corsOptions = {
-  origin: config.get('frontendURL'),
+  origin: config.get('frontend_URL'),
   credentials: true,
 };
-app.use(cors(corsOptions))
+app.use(cors())
 
 app.use(bodyParser.json())
 // config
@@ -24,11 +24,11 @@ app.use('/api/users', require('./routes/api/users'))
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'))
 
-	app.get('/*', (req, res) => {
+	app.get('*', (req, res) => {
 		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
 	})
 }
 
-const PORT = config.get('port') || port
+const PORT = port || 5000
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`))

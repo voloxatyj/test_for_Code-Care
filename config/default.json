@@ -2,5 +2,5 @@
 	"port": 5000,
 	"mongoURI": "mongodb+srv://admin:root@cluster0.huu8s.mongodb.net/calendar?retryWrites=true&w=majority",
 	"jwtSecret": "voloxatyj_dbJwtSecret",
-	"frontendURL": "https://cryptic-shore-77721.herokuapp.com/"
+	"frontendURL": "https://salty-scrubland-35144.herokuapp.com/"
 }
