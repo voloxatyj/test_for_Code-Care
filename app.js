@@ -7,7 +7,7 @@ const app = express()
 
 // Enable cors
 const corsOptions = {
-  origin: config.get('frontend_URL'),
+  origin: config.get('frontendURL'),
   credentials: true,
 };
 app.use(cors(corsOptions))

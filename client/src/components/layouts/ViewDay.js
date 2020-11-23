@@ -10,7 +10,7 @@ import moment from 'moment'
 export const ViewDay = ({date}) => {
 const time = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','1:00','1:30','2:00','2:30','3:00','3:30','4:00','4:30','5:00']
 const events = useSelector(state => state.data.events)
-let right = 50
+let right = 70
 const viewEvent = useSelector(state => state.ui.openDialog,()=>{})
 const dispatch = useDispatch()
 	return (
@@ -38,7 +38,7 @@ const dispatch = useDispatch()
 										events.map((event,index) => {
 											if(moment(event.startDate).format('l').replaceAll('/','-')===date && event.start === item) {
 												if(index >= 1 && event.startDate>=events[index-1].endDate){
-													right -= 40
+													right -= 30
 												}
 												return (
 													<ViewEvent key={index} text={event.title} heigh={Math.floor(event.duration/30)} id={event._id} right={right}/>
@@ -60,7 +60,7 @@ const dispatch = useDispatch()
 										events.map((event,index) => {
 											if(moment(event.startDate).format('l').replaceAll('/','-')===date && event.start === item) {
 												if(index >= 1 && event.startDate>=events[index-1].endDate){
-													right -= 40
+													right -= 30
 												}
 												return (
 													<ViewEvent key={index} text={event.title} heigh={Math.floor(event.duration/30)} id={event._id} right={right}/>
